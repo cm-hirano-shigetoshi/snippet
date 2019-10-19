@@ -9,6 +9,8 @@ base_task:
 expects:
   enter:
     pipe: perl $(dirname $yml)/get_text.pl | awk 'BEGIN{print "clipboard"} {print}'
-  alt-e:
+  alt-enter:
     pipe: perl $(dirname $yml)/get_text.pl | awk 'BEGIN{print "edit"} {print}'
+  alt-e:
+    pipe: awk 'BEGIN{print "edit_original"} {print}'
 

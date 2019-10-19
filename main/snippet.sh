@@ -26,6 +26,10 @@ function fzf_snippet() {
     if [[ -s ${temp_file} ]]; then
       cat ${temp_file} | pbcopy
     fi
+  elif [[ "${type}" = "edit_original" ]]; then
+    target_file=$(sed '1d' <<< "${result}" | awk -F ':' '{print $1}')
+    line_x=$(sed '1d' <<< "${result}" | awk -F ':' '{print $3}')
+    ${EDITOR-vim} +${line_x} ${target_file}
   fi
 }
 fzf_snippet "$@"
