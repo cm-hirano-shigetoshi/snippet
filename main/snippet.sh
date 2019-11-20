@@ -29,7 +29,7 @@ function fzf_snippet() {
   elif [[ "${type}" = "edit_original" ]]; then
     target_file=$(sed '1d' <<< "${result}" | awk -F ':' '{print $1}')
     line_x=$(sed '1d' <<< "${result}" | awk -F ':' '{print $3}')
-    ${EDITOR-vim} +${line_x} ${target_file}
+    ${EDITOR-vim} +${line_x} -c "normal zz" ${target_file}
   fi
 }
 fzf_snippet "$@"
