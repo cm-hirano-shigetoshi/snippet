@@ -1,10 +1,8 @@
 function fzf_snippet() {
-  export PATH="${HOME}/local/bin:${PATH}"
   local readonly TOOL_DIR="$(dirname $(perl -MCwd=realpath -le 'print realpath shift' "$0"))"
-  local readonly SNIPPET_DIR="${TOOL_DIR}/../snippets/$1"
+  local readonly SNIPPET_DIR="$1"
   local result
-  result=$(fzfyml run ${TOOL_DIR}/snippet.yml "$SNIPPET_DIR")
-  echo "${result}" >> ~/.debug
+  result=$(fzfyml3 run ${TOOL_DIR}/snippet.yml "$SNIPPET_DIR")
   if [[ -z "${result}" ]]; then
     return
   fi
