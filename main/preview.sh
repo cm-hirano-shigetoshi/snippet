@@ -7,5 +7,6 @@ index=$(cat "$temp_dir/index" | \
     awk '{print $2}')
 
 cat "${snippet_file}" | \
-    awk "NR<=${index} {next} !/^###/ {print} /^###/ {exit}"
+    awk "NR<=${index} {next} !/^###/ {print} /^###/ {exit}" | \
+    bat --color always --plain -l python
 
