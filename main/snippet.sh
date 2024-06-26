@@ -19,7 +19,7 @@ selected=$(sed -n 's/### \(.*\)/\1/p' "$temp_dir/snippet" | \
     --bind 'enter:become:echo enter; echo {n};' \
     --bind 'alt-enter:become:echo alt-enter; echo {n};' \
     --preview "${TOOL_DIR}/preview.sh \"$temp_dir/snippet\" ${temp_dir} \$(echo {n})" \
-    --preview-window "wrap:down:50%" \
+    --preview-window "wrap:down:70%" \
 )
 if [[ -n "${selected}" ]]; then
     header="$(head -1 <<< "${selected}")"
