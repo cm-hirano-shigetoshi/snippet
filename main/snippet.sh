@@ -11,15 +11,15 @@ function fzf_select_num() {
         --bind 'enter:become:echo enter {n}' \
         --bind 'alt-enter:become:echo alt-enter {n}' \
         --bind 'alt-e:become:echo alt-e {n}' \
-        --bind "alt-a:reload:\"$TOOL_DIR/func\" save_global_path_line \"$SNIPPET_DIR\" $temp_dir; cat \"$temp_dir/snippet\"" \
+        --bind "alt-a:reload:\"$TOOL_DIR/temporary.sh\" save_global_path_line \"$SNIPPET_DIR\" $temp_dir; cat \"$temp_dir/snippet\"" \
         --preview "\"${TOOL_DIR}/preview.sh\" $temp_dir {n}" \
         --preview-window "wrap:down:70%"
 }
 
 
-"$TOOL_DIR/func" save_snippet "$SNIPPET_DIR" $temp_dir
-"$TOOL_DIR/func" save_path_line "$SNIPPET_DIR" $temp_dir
-"$TOOL_DIR/func" save_index "$SNIPPET_DIR" $temp_dir
+"$TOOL_DIR/temporary.sh" save_snippet "$SNIPPET_DIR" $temp_dir
+"$TOOL_DIR/temporary.sh" save_path_line "$SNIPPET_DIR" $temp_dir
+"$TOOL_DIR/temporary.sh" save_index "$SNIPPET_DIR" $temp_dir
 
 selected_num=$(fzf_select_num)
 
