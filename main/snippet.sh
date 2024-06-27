@@ -29,6 +29,7 @@ function fzf_select_num() {
         --bind 'enter:become:echo enter {n}' \
         --bind 'alt-enter:become:echo alt-enter {n}' \
         --bind 'alt-e:become:echo alt-e {n}' \
+        --bind "alt-a:reload:\"$TOOL_DIR/save_global_path_line.sh\" \"$SNIPPET_DIR\" \"$temp_dir/global-path-line\"; cat \"$temp_dir/snippet\"" \
         --preview "${TOOL_DIR}/preview.sh \"$temp_dir/snippet\" \"$temp_dir/index\" \$(echo {n})" \
         --preview-window "wrap:down:70%"
 }
@@ -49,7 +50,11 @@ if [[ -n "${selected_num}" ]]; then
             cat "$temp_dir/code" | perl -pe 'chomp if eof' | pbcopy
         fi
     elif [[ "${header}" = "alt-e" ]]; then
-        read path line < <(sed -n "$((${num}+1))p" "$temp_dir/path-line")
+        if [[ -s "$temp_dir/global-path-line" ]]; then
+            read path line < <(sed -n "$((${num}+1))p" "$temp_dir/global-path-line")
+        else
+            read path line < <(sed -n "$((${num}+1))p" "$temp_dir/path-line")
+        fi
         $EDITOR $path +$line
     else
         "${TOOL_DIR}/get_code.sh" "$temp_dir/snippet" "$temp_dir/index" $num | \
