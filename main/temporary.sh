@@ -7,7 +7,7 @@ temp_dir="$3"
 
 function save_snippet() {
     grep -Sr '^' "$snippet_dir" | \
-        sed -e '/:###/!s%^[^:]\+:%%' -e '/:###/s%^.*/\([^/]\+\)\.md:###%### \1% ' \
+        sed -e '/:###/!s%^[^:][^:]*:%%' -e '/:###/s%^.*/\([^/][^/]*\)\.md:###%### \1% ' \
         > $temp_dir/snippet
 }
 
@@ -26,8 +26,8 @@ function save_index() {
 
 function save_global_path_line() {
     grep -Srn '^' "$snippet_dir" | \
-        awk '/^(.*):### / {p=$1} {print p}' | \
-        sed 's/:\([^:]\+\):.*$/ \1/' \
+        awk '/^(.*):### / {print $1}' | \
+        awk -F ':' '{print $1,$2}' \
         > "$temp_dir/global_path_line"
 }
 
