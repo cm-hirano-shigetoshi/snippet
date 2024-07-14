@@ -12,7 +12,4 @@
 # @raycast.description post to slack
 
 readonly TOOL_DIR="$(dirname $(perl -MCwd=realpath -le 'print realpath shift' "$0"))"
-pane_id=$(/Applications/WezTerm.app/Contents/MacOS/wezterm cli split-pane)
-/Applications/WezTerm.app/Contents/MacOS/wezterm cli zoom-pane --pane-id $pane_id
-echo "exec bash ${TOOL_DIR}/../main/snippet.sh" | /Applications/WezTerm.app/Contents/MacOS/wezterm cli send-text --pane-id $pane_id --no-paste
-open /Applications/WezTerm.app/
+"${TOOL_DIR}/../main/wezterm.sh"
