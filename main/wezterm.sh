@@ -12,8 +12,7 @@ function wezterm_run() {
 }
 
 function wezterm_run_shell() {
-    pane_id=$("${WEZTERM_APP_DIR}/wezterm" cli split-pane)
-    "${WEZTERM_APP_DIR}/wezterm" cli zoom-pane --pane-id ${pane_id}
+    pane_id=$("${WEZTERM_APP_DIR}/wezterm" cli spawn)
     echo "$@; exit" | "${WEZTERM_APP_DIR}/wezterm" cli send-text --pane-id ${pane_id} --no-paste
 }
 
